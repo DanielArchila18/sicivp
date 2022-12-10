@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <p:card>
+        
+            
+                <h1>Registrar Productos</h1>
+            <p:growl id="message" showDetail="true" >
+                <p:autoUpdate/>
+            </p:growl>  
+            <h:form>
+                <p:outputLabel value="Producto"/>
+                <p:selectOneMenu value="#{detalleVentaBean.idProd}" filter="true" filterMatchMode="startsWith">
+                    <f:selectItems value="#{detalleVentaBean.allProductDisp()}" var="producto" itemValue="#{producto.fk_producto.id_Producto}" itemLabel="#{producto.fk_producto.referencia} / #{producto.fk_producto.nombre}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Cantidad"/>
+                <p:inputText value="#{detalleVentaBean.detalleV.cantidad}" required="true" requiredMessage="Cantidad es requerida"  validatorMessage="Ingrese una cantidad valida">
+                    <f:validateLongRange minimum="1"/>
+                
+                </p:inputText>
+
+                <p:commandButton value="Enviar" styleClass="ui-button-success" action="#{detalleVentaBean.registrarVenta()}"/>
+
+
+            </h:form>
+                
+                <h:form enctype="multipart/form-data">
+                    <h6>Exportar de excel</h6>
+                    <p:fileUpload mode="simple" accept=".xlsx" value="#{detalleVentaBean.carga}" required="true" requiredMessage="Archivo de carga es requerido"/>
+                    <p:commandButton styleClass="ui-button-success" icon="pi pi-cloud-upload" value="Cargar archivo" action="#{detalleVentaBean.cargarProductos()}" ajax="false"/>
+                    
+                </h:form>
+
+            <p:dataTable value="#{detalleVentaBean.listByComprobante()}" var="producto" id="table" rendered="true" paginator="true" rows="2">
+                <p:column headerText="Producto" >
+                    <h:outputText value="Ref: #{producto.fk_producto.referencia}  #{producto.fk_producto.nombre}" />
+                </p:column>
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{producto.cantidad}"/>
+                </p:column>
+                <p:column headerText="Precio Unitario">
+                    <h:outputText value="#{producto.fk_producto.precio}"/>
+                </p:column>
+                <p:column headerText="Precio total">
+                    <h:outputText value="#{producto.total}"/>
+                </p:column>
+              
+            </p:dataTable>
+
+             <h:form>
+
+                 
+                <p:commandButton value="Registrar Venta" styleClass="ui-button-success" action="#{detalleVentaBean.confirmarCompra()}"/>
+                
+             </h:form>
+
+
+        </p:card>
+        
+        
+    </h:body>
+</html>
+

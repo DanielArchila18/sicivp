@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/xhtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+        
+        <title>Autenticación</title>
+          <h:outputStylesheet name="/bootstrap/css/bootstrap.min.css"/>
+          <h:outputStylesheet name="/estiloLogin/estiloLogin.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+    </h:head>
+   
+    <h:body class="body">
+
+          <div class="texto">
+    	<h1>NEW <br/> FASHION</h1>
+
+    </div>
+        <div class="ter">
+            
+            
+        </div>
+
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-8 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-ligth my-4" style="color:#ffffff ">Iniciar Sesión</h3></div>                  
+                                    <div class="card-body">
+                                        <h:form class="form-group">
+                                            <div class="form-floating mb-3 input">
+                                                <h:inputText  class="form-control" id="inputEmail" value="#{loginBean.usuario.correo}" required="true" requiredMessage="Correo electronico es requerido">
+                                                    <f:validateRequired/>
+                                                </h:inputText>
+                                                
+                                                <h:outputLabel style="color: #ffffff" for="inputEmail" value="Correo Electronico"/>
+                                            </div>
+                                            <div class="form-floating mb-3 input">
+                                                <h:inputSecret class="form-control" id="inputPassword" value="#{loginBean.usuario.contrasena}" required="true" requiredMessage="Contraseña es requerida">
+                                                    <f:validateRequired/>
+                                                    
+                                                </h:inputSecret>
+                                                <h:outputLabel style="color: #ffffff" for="inputPassword" value="Contraseña"/>
+                                            </div>
+                              
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        
+                                                <h:commandButton class="btn btn-dark" value="Iniciar Sesión" action="#{loginBean.iniciarSession()}"/>
+                                            </div>
+                                         
+                                                <p:growl id="message" showDetail="true" >
+                                                    <p:autoUpdate/>
+                                                </p:growl>   
+                                        </h:form>
+                                           <h:form>
+                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <h:commandButton class="btn btn-dark" value="Registrarse" action="/usuarios/addUsuarios"/>
+                                            </div>
+                                                </h:form>
+                                        
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </main>
+                
+            </div>
+        </div>
+    </h:body>
+</html>

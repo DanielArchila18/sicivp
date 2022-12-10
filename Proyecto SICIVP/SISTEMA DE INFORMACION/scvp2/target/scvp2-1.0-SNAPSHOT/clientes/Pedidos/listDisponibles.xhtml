@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+          <div class="card m-4">
+      
+              <p:dataTable  value="#{pedidoBean.findByCliente()}" var="pedido"  rows="3" paginator="true"  emptyMessage="No se han encontrado registros con el criterio de busqueda" filteredValue="#{ventaBean.findAll()}">
+                    <p:column headerText="Pedido n°">
+                        
+                        <h:outputText value="#{pedido.id_Domicilio}"></h:outputText>
+                    </p:column>
+         
+                <p:column headerText="Fecha Creacion"  filterMatchMode="contains">
+                        
+                    <h:outputText value="#{pedido.fecha_Pedido}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                    </p:column>
+                  
+                  <p:column headerText="Destinatario"  filterMatchMode="contains">
+                        
+                      <h:outputText value="#{pedido.fk_persona.nombre} #{pedido.fk_persona.apellido}">
+                       
+                    </h:outputText>
+                    </p:column>
+                    
+                  <p:column headerText="Estado" >
+                      
+                      <h:outputText value="#{pedido.estado}"/>
+                  </p:column>          
+                    <p:column>
+                        <f:facet name="header">Detalles</f:facet>
+                        <h:form>
+                            
+                            <p:commandButton action="#{pedidoBean.enviarPedido(pedido.id_Domicilio)}"  styleClass="rounded-button ui-button-success" icon="pi pi-pencil"> </p:commandButton>
+                        </h:form>
+                    </p:column>
+                  
+            
+
+                </p:dataTable>
+        </div>
+    </h:body>
+</html>
+

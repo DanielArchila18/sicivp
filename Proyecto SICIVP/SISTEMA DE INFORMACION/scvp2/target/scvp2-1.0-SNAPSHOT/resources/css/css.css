@@ -1,0 +1,25 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 9 jul. 2022, 14:59:58
+    Author     : luzam
+*/
+
+.c{
+   background:#FDFEFE ;
+ 
+}
+.c::-webkit-scrollbar {
+    width: 12px;
+   background: #FDFEFE;
+   
+}
+
+.c::-webkit-scrollbar-thumb {
+    width: 8px;
+   background: #D1D9E1;
+   border-radius: 10px;
+
+}

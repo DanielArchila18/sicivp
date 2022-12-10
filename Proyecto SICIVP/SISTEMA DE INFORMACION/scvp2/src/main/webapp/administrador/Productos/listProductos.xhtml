@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ventas</title>
+        <h:outputStylesheet name="/bootstrap/css/bootstrap.min.css"/>
+    </h:head>
+
+    <h:body class="c">
+        
+        <p:card>
+            <div class="ui-g">
+            <div class="ui-g-6">
+                <h:form enctype="multipart/form-data">
+                    <h5>Carga de productos</h5>
+                    <p:fileUpload value="#{productoBean.carga}" mode="simple" accept=".xlsx" required="true" requiredMessage="Archivo de carga es requerido"/>
+                    <p:commandButton value="Subir" icon="pi pi-cloud-upload" action="#{productoBean.cargarProductos()}" ajax="false"/>
+                </h:form>
+                
+            </div>
+            <div class="ui-g-6">
+                <h5>Agregar producto</h5>
+                <h:form>
+                    <p:commandButton value="Crear" styleClass="ui-button-success" icon="pi pi-plus" action="addProducto?faces-redirect=true"></p:commandButton>
+                </h:form>
+            </div>
+            </div>
+        <h3>Listado de productos</h3>
+        <div class="card m-4">
+            <p:dataTable  value="#{productoBean.findAll()}" var="producto"  rows="3" paginator="true"  emptyMessage="No se han encontrado registros con el criterio de busqueda" id="table">
+                    <p:column headerText="Venta N°">
+                        
+                        <h:outputText value="#{producto.id_Producto}"></h:outputText>
+                    </p:column>
+                <p:column headerText="nombre">
+                        
+                    <h:outputText value="#{producto.nombre}"></h:outputText>
+                    </p:column>
+                <p:column headerText="ref"  >
+                        
+                    <h:outputText value="#{producto.referencia}"></h:outputText>
+                    </p:column>
+                    
+                <p:column headerText="precio"  >
+                        
+                    <h:outputText value="#{producto.precio}"></h:outputText>
+                    </p:column>
+                    
+                        
+          
+        
+                      
+
+                </p:dataTable>
+        </div>
+        </p:card>
+            <p:growl id="message" showDetail="true"/>
+            
+                
+                        
+       
+    
+
+    </h:body>
+</html>
+

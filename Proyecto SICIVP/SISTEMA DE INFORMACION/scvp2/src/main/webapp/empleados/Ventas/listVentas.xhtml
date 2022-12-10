@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ventas</title>
+        <h:outputStylesheet name="/bootstrap/css/bootstrap.min.css"/>
+    </h:head>
+
+    <h:body class="c">
+        
+            <div class="m-4">
+
+                <h:form>
+                    <p:commandButton value="Crear" styleClass="ui-button-success" icon="pi pi-plus" action="addVenta?faces-redirect=true"></p:commandButton>
+                </h:form>
+            </div>
+            
+
+        <div class="card m-4">
+            <p:card>
+                <h3>Lista de ventas</h3>
+                <h:form>
+            <p:dataTable  value="#{comprobanteBean.findAll()}" var="venta"  rows="3" paginator="true"  emptyMessage="No se han encontrado registros con el criterio de busqueda" filteredValue="#{ventaBean.findAll()}">
+                    <p:column headerText="Venta N°">
+                        
+                        <h:outputText value="#{venta.id_Comprobante_Venta}"></h:outputText>
+                    </p:column>
+                <p:column headerText="Cliente" filterBy="#{venta.fk_persona.nombre} #{venta.fk_persona.apellido}" filterMatchMode="contains">
+                        
+                        <h:outputText value="#{venta.fk_persona.nombre} #{venta.fk_persona.apellido}"></h:outputText>
+                    </p:column>
+                <p:column headerText="producto"  filterBy="#{venta.fecha_Comprobante}" filterMatchMode="contains">
+                        
+                    <h:outputText value="#{venta.fecha_Comprobante}"></h:outputText>
+                    </p:column>
+                    
+                        
+          
+                    <p:column>
+                        <f:facet name="header">Detalles</f:facet>
+                        
+                            
+                            <p:commandButton action="#{comprobanteBean.EnviarComprobante(venta.id_Comprobante_Venta)}"  styleClass="ui-button-success" icon="pi pi-pencil"> </p:commandButton>
+                        
+                    </p:column>
+            
+                     <p:column>
+                        <f:facet name="header">Detalles</f:facet>
+                        
+                            
+                            <p:commandButton action="#{comprobanteBean.EnviarComprobante(venta.id_Comprobante_Venta)}"  styleClass="ui-button-danger" icon="pi pi-file-pdf"> </p:commandButton>
+                        
+                    </p:column>
+
+            </p:dataTable>
+                    </h:form>
+            </p:card>
+        </div>
+            <p:growl id="message" showDetail="true"/>
+            
+                
+                        
+       
+    
+
+    </h:body>
+</html>
+

@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Agregar Usuario</title>
+        <link rel="stylesheet" href="url"/>
+        <h:outputStylesheet name="/bootstrap/css/bootstrap.min.css"/>  
+        <h:outputStylesheet name="/estiloRegistro/style.css"/>
+
+    </h:head>
+    <h:body class="body">
+          <div class="texto">
+    	<h1>NEW <br/> FASHION</h1>
+
+    </div>
+        <div class="ter">
+            
+            
+        </div>
+
+        <div id="layoutReg">
+            <div id="layoutRegC">
+                <main>    
+                    <div class="container-fluid">
+                        <div class="row ">
+                            <div class="col-lg-5">
+                                <div class="card  border-8 ">
+                                    <div><h3 class="text-center font-weight-ligth my-4" style="color:#ffffff; font-family: 'Reem Kufi Ink', sans-serif; color: #8c88a8; ">Registro</h3></div>
+                                    <div class="card-body">
+                                        <h:form class="form-group">
+                                            <div class="form-floating mb-3">  
+
+                                                <h:inputText class="form-control" id="idUsuario"  value="#{usuarioBean.persona.id_persona}" required="true" requiredMessage="Documento de identificación es requerido" validatorMessage="El documento de identidad no es valido">
+                                                    <f:validateRequired/>
+                                                    <f:validateLength minimum = "5"/>
+                                                    <f:validateLongRange minimum="1"/>
+                                                </h:inputText>
+                                                <h:outputLabel for="idUsuario" style="color: #ffffff ; font-family: 'Reem Kufi Ink', sans-serif;" value="Numero de identificacion"></h:outputLabel>
+                                            </div>  
+
+
+                                            <div class="form-floating mb-3">
+
+                                                <h:selectOneMenu id="tipo_documento" class="form-control form-select" required="true" requiredMessage="Especifique tipo de documento" value="#{usuarioBean.persona.tipo_documento}" >
+                                                    <f:selectItem itemValue="" itemLabel="Seleccionar"/>
+                                                    <f:selectItem itemValue="CC"  itemLabel="CC - Cedula de Ciudadania" />
+                                                    <f:selectItem itemValue="CE"  itemLabel="CE - Cedula de Extranjeria" />
+                                                    <f:selectItem itemValue="PP"  itemLabel="PP - Pasaporte" />
+                                                    <f:selectItem itemValue="PEP"  itemLabel="PEP - Permiso Especial de Permanencia" />
+                                                </h:selectOneMenu>
+                                                <h:outputLabel  for="tipoDocumento" style="color: #ffffff; font-family: 'Reem Kufi Ink', sans-serif;" >Tipo de documento</h:outputLabel>
+
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+
+
+                                                <h:inputText class="form-control" id="nombre" value="#{usuarioBean.persona.nombre}" required="true" requiredMessage="Nombres son requeridos">
+                                                    <f:validateRequired/>
+
+                                                </h:inputText>
+                                                <h:outputLabel for="nombre" style="color: #ffffff ; font-family: 'Reem Kufi Ink', sans-serif;">Nombres</h:outputLabel>
+                                            </div>
+
+
+                                            <div class="form-floating mb-3">
+
+                                                <h:inputText class="form-control" id="apellido" value="#{usuarioBean.persona.apellido}" required="true" requiredMessage="Apellidos son requeridos">
+                                                    <f:validateRequired/>
+
+                                                </h:inputText>
+                                                <h:outputLabel for="apellido" style="color: #ffffff; font-family: 'Reem Kufi Ink', sans-serif;">Apellidos</h:outputLabel>
+
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+
+                                                <h:inputText class="form-control" id="correo" value="#{usuarioBean.usuario.correo}" required="true" requiredMessage="Correo electronico es requerido" validatorMessage="La direccion de correo no es valida">
+                                                    <f:validateRequired/>
+                                                    <f:validateLength minimum = "5"/>
+                                                    <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                                                </h:inputText>
+                                                <h:outputLabel for="correo" style="color: #ffffff ; font-family: 'Reem Kufi Ink', sans-serif;">Correo electronico</h:outputLabel>
+                                            </div>
+
+
+                                            <div class="form-floating mb-3">
+
+                                                <h:inputText class="form-control" id="direccion" value="#{usuarioBean.persona.direccion}" required="true" requiredMessage="Dirección es requerida" validatorMessage="La longitud de la direccion es muy corta, minimo 5 caracteres">
+                                                    <f:validateRequired/>
+                                                    <f:validateLength minimum = "5"/>
+
+                                                </h:inputText>
+                                                <h:outputLabel for="direccion" style="color: #ffffff ; font-family: 'Reem Kufi Ink', sans-serif;">Direccion de residencia</h:outputLabel>
+                                            </div>
+                                            <div class="form-floating mb-3">
+
+                                                <h:inputText class="form-control" id="telefono" value="#{usuarioBean.persona.telefono}" required="true" requiredMessage="Telefono es requerido" validatorMessage="La longitud del telefono no es permitida. Minimo 5 caracteres, maximo 10 caracteres.">
+                                                    <f:validateRequired/>
+                                                   
+                                                </h:inputText>
+                                                <h:outputLabel for="telefono" style="color: #ffffff ; font-family: 'Reem Kufi Ink', sans-serif;">Telefono</h:outputLabel>
+                                            </div>  
+
+                                            <div class="form-floating mb-3">
+                                                <h:inputSecret class="form-control" id="contrasena" value="#{usuarioBean.usuario.contrasena}" required="true" requiredMessage="Contraseña es requerida" validatorMessage="La contraseña debe contener minimo 5 caracteres">
+                                                    <f:validateRequired/>
+                                       
+                                                    
+                                                </h:inputSecret>
+                                                <h:outputLabel for="contrasena" style="color: #ffffff ; font-family: 'Reem Kufi Ink', sans-serif;"> Contraseña</h:outputLabel>
+                                            </div>
+                                            <p:growl id="message" showDetail="true">
+                                                <p:autoUpdate/>
+                                            </p:growl>
+                                            <p:commandButton class="vbp" value="Registrar" action="${usuarioBean.addUsuario()}" update="message" icon="pi pi-check" >
+                                                <p:confirm header="Confirmación" message="¿Esta seguro de que los datos registrados son correctos?" icon="pi pi-info-circle"/>
+                                            </p:commandButton>
+                                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                                <p:commandButton value="Si" type="button" icon="pi pi-check" styleClass="ui-confirmdialog-yes ui-button-secondary"/>
+                                                <p:commandButton value="No" type="button" icon="pi pi-times" styleClass="ui-confirmdialog-no ui-button-danger"/>
+                                            </p:confirmDialog> 
+                                        </h:form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </main>
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:card>
+            <h3>Registro de clientes</h3>
+
+            <h:form>
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <p:outputLabel value="Nombres Cliente" styleClass="mb-2"/>
+                        <p:inputText value="#{usuarioBean.persona.nombre}" required="true" requiredMessage="nombre es requerido"/>
+                    </div>
+                    <div class="ui-g-6">
+                        <p:outputLabel value="Apellidos Cliente" styleClass="mb-2"/>
+                        <p:inputText value="#{usuarioBean.persona.apellido}"  required="true" requiredMessage="apellidos son requeridos"/>
+
+                    </div>   
+
+                    <div class="ui-g-6">
+                        <p:outputLabel value="No documento" styleClass="mb-2"/>
+                        <p:inputText value="#{usuarioBean.persona.id_persona}" required="true"  requiredMessage="Documento es requerido"  validatorMessage="Ingrese un numero valido">
+                            <f:validateLongRange minimum="0"/>
+                        </p:inputText>
+
+                    </div>   
+
+
+
+                    <div class="ui-g-6">
+                        <p:outputLabel value="Tipo documento"/>
+                        <p:selectOneMenu value="#{usuarioBean.persona.tipo_documento}" styleClass="mb-2" required="true" requiredMessage="Tido de documento es requerido">
+                            <f:selectItem itemValue="" itemLabel="Seleccionar"/>
+                            <f:selectItem itemValue="CC"  itemLabel="CC - Cedula de Ciudadania" />
+                            <f:selectItem itemValue="CE"  itemLabel="CE - Cedula de Extranjeria" />
+                            <f:selectItem itemValue="PP"  itemLabel="PP - Pasaporte" />
+                            <f:selectItem itemValue="PEP"  itemLabel="PEP - Permiso Especial de Permanencia" />
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="ui-g-6">
+                        <h:outputLabel value="Correo electronico"/>
+                        <p:inputText value="#{usuarioBean.usuario.correo}" styleClass="mb-2" required="true" requiredMessage="Correo electronico es requerido">
+                            <f:validateLength minimum = "5"/>
+                            <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                        </p:inputText>
+                    </div>
+                    <div class="ui-g-6">
+                        <h:outputLabel value="Telefono"/>
+                        <p:inputText value="#{usuarioBean.persona.telefono}" required="true" requiredMessage="telefono es requerido"  validatorMessage="Ingrese un telefono valido">
+                            <f:validateLongRange minimum="0"/>
+                        </p:inputText>
+                    </div>
+                    <div class="ui-g-6">
+                        <p:outputLabel value="Direccion residencia"/>
+                        <p:inputText value="#{usuarioBean.persona.direccion}" required="true" requiredMessage="Direccion es requerida"/>
+                    </div>
+                    <div class="ui-g-6">
+                        <h:outputLabel value="Rol"/>
+                        <p:selectOneMenu value="#{usuarioBean.id_rol}" required="true" requiredMessage="Rol es requerido">
+                            <f:selectItem itemValue="" itemLabel="Seleccionar"/> 
+                            <f:selectItems value="#{usuarioBean.listRoles()}" var="rol" itemValue="#{rol.id_rol}" itemLabel="#{rol.nombre_rol}"/>
+
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="ui-g-6">
+                        <p:commandButton value="Agregar Cliente" action="#{usuarioBean.addFromAdmin()}" styleClass="ui-button-success mb-2"/>
+                    </div>
+                </div>
+                <p:growl showDetail="true">
+
+                    <p:autoUpdate/>
+                </p:growl>
+
+
+            </h:form>
+
+
+
+
+
+        </p:card>
+    </h:body>
+</html>
+
